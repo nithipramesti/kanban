@@ -30,7 +30,7 @@ function App() {
   return (
     <div className="app">
       <div className="nav-side">
-        <div className="logo">kanbas</div>
+        <div className="logo">kanban</div>
         <p className="text__muted">{`ALL BOARDS (${boards.length})`}</p>
         <div className="nav-side__board-links">
           <BoardLink />
