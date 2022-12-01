@@ -7,7 +7,7 @@ app.use(express.json());
 let { MongoClient, ObjectId } = require("mongodb");
 
 let url =
-  "mongodb+srv://nithipramesti:agustus15@cluster0.v34gz.mongodb.net/kanban?retryWrites=true&w=majority";
+  "mongodb+srv://nithipramesti:agustus15@cluster0.v34gz.mongodb.net/kanban?retryWrites=true&w=majority&ssl=true";
 
 //connect to mongoDB - testing?
 MongoClient.connect(url, (err, client) => {
@@ -20,13 +20,10 @@ MongoClient.connect(url, (err, client) => {
 app.get("/get-filter", (req, res) => {
   MongoClient.connect(url, (err, client) => {
     const db = client.db("kanban");
-    //find({nama: "nithi"})
-    //find({...req.query})
-    //find({$or:[{nama: "nithi"}, {usia: 28}]}).
+    //console.log(req.body);
 
-    //gt: greater than
     db.collection("tasks")
-      .find({ status: "Todo" })
+      .find({ board: "Platform Launch" })
       .toArray((err, docs) => {
         if (err) {
           console.log(err);
@@ -38,23 +35,9 @@ app.get("/get-filter", (req, res) => {
   });
 });
 
-app.get("/get-son", (req, res) => {
-  const data = {
-    name: "Son Heung Min",
-    isAwesome: true,
-  };
-
-  res.json(data);
-
-  res.status(200).send({
-    success: true,
-    data,
-  });
-});
-
 app.get("/awesome-generator", (req, res) => {
   const { name, isAwesome } = req.query;
-  res.send(`${name} is ${JSON.parse(isAwesome) ? "really" : "not"} awesome`);
+  res.send(`Hiho`);
 });
 
 app.listen(port, () => {
